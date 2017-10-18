@@ -1,0 +1,44 @@
+
+
+<!DOCTYPE html>
+<html lang="zh">
+<!-- htmlcs-disable -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>图灵</title>
+</head>
+
+<body>
+    <input type="password" id="message" />
+    <input type="text" id="message" />
+    <button type="text" id="send">发送</button>
+    <div id="chat"></div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io('http://172.22.151.5:8020/');
+        var chat = document.getElementById('chat');
+        var message = document.getElementById('message');
+        var send = document.getElementById('send');
+        send.addEventListener("click", function () {
+            var me = '<br>' + '我：' + message.value;
+            chat.innerHTML = chat.innerHTML + me;
+            socket.emit('chat', {
+                message: message.value
+            });
+        }, false);
+        socket.on('chat', function (data) {
+            
+            var tuling = '<br>' + '美女：' + data.content;
+            chat.innerHTML = chat.innerHTML + tuling;
+        });
+        socket.on('news', function (data) {
+            console.log(data);
+            socket.emit('my other event', {
+                my: 'data'
+            });
+        });
+    </script>
+</body>
+<!-- htmlcs-enable -->
+</html>

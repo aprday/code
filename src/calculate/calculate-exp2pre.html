@@ -1,0 +1,127 @@
+<script>
+    var text = '2*3/(2-1)+3*(4-1)';
+
+    //反转字符串
+    text = text.split('').reverse().join('');
+    console.log(text);
+    var at = 0,
+        ch = '';
+    var stack = [];
+    var result = [];
+
+    function value() {
+        switch (ch) {
+            case ')':
+                stack.push(ch)
+                break;
+            case '(':
+                bracket();
+                break;
+            default:
+                return (ch >= '0' && ch <= '9') ? number() : operator();
+        }
+    }
+    function bracket() {
+        var express = stack.pop();
+        if (express && express !== ')') {
+            bracket();
+            result.push(express);
+        }
+    }
+
+    function isAdvance(ch) {
+        var length = stack.length;
+        switch (ch) {
+            case '+': case '-':
+                return (stack[length - 1] === '/' || stack[length - 1] === '*') ? false : true;
+                break;
+            default:
+                return true;
+                break;
+        }
+    }
+
+    function operator() {
+        var length = stack.length;
+        if (length === 0) {
+            stack.push(ch)
+        } else if (stack[length - 1] === ')') {
+            stack.push(ch)
+        } else if (isAdvance(ch)) {
+            stack.push(ch)
+        } else {
+            var express = stack.pop();
+            result.push(express);
+            operator();
+        }
+    }
+
+    function next() {
+        ch = text.charAt(at);
+        at += 1;
+        while (ch && ch <= ' ') {
+            // 跳过空格
+            next();
+        }
+        return ch;
+    }
+
+    function number() {
+        var number, string = '';
+        if (ch === '-') {
+            string = '-';
+            // 跳过-
+            next('-');
+        }
+        while (ch >= '0' && ch <= '9') {
+            string += ch;
+            next();
+        }
+        if (ch === '.') {
+            string += '.';
+            // 跳过., 获取小数后的部分
+            while (next() && ch >= '0' && ch <= '9') {
+                string += ch;
+            }
+        }
+        number = +string;
+        result.push(number);
+        value();
+    }
+
+    function calculate(first, last, op) {
+        switch (op) {
+            case '+':
+                return first + last;
+                break;
+            case '-':
+                return first - last;
+                break;
+            case '*':
+                console.log(first * last);
+                return first * last;
+                break;
+            case '/':
+                return first / last;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+
+    while (next()) {
+        console.log(stack);
+        value();
+    }
+
+    while (stack.length) {
+        var express = stack.pop();
+        result.push(express);
+    }
+
+    result = result.reverse();
+    console.log(result.join(''));
+
+
+</script>

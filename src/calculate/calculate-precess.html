@@ -1,0 +1,134 @@
+<script>
+    var text = '2*3/(2-1)+3*(4-1)';
+
+    console.log(text);
+
+    var at = 0,
+        ch = '';
+    var stack = [];
+    var array = [];
+
+    function value() {
+        switch (ch) {
+            case '(':
+                stack.push(ch)
+                break;
+            case ')':
+                bracket();
+                break;
+            default:
+                return (ch >= '0' && ch <= '9') ? number() : operator();
+        }
+    }
+    function bracket() {
+        var express = stack.pop();
+        if (express && express !== '(') {
+            bracket();
+            array.push(express);
+        }
+    }
+
+    function isAdvance(ch) {
+        var length = stack.length;
+        console.log(ch, stack[length - 1])
+        switch (ch) {
+            case '+': case '-':
+                return true;
+                break;
+            case '*': case '/':
+                return (stack[length - 1] === '/' || stack[length - 1] === '*') ? true : false;
+                break;
+        }
+    }
+
+    function operator() {
+        var length = stack.length;
+        if (length !== 0 && stack[length - 1] !== '(' && isAdvance(ch)) {
+            var express = stack.pop();
+            array.push(express);
+            operator();
+        } else {
+            stack.push(ch)
+        }
+    }
+
+    function next() {
+        ch = text.charAt(at);
+        at += 1;
+        while (ch && ch <= ' ') {
+            // 跳过空格
+            next();
+        }
+        return ch;
+    }
+
+    function number() {
+        var number, string = '';
+        if (ch === '-') {
+            string = '-';
+            // 跳过-
+            next('-');
+        }
+        while (ch >= '0' && ch <= '9') {
+            string += ch;
+            next();
+        }
+        if (ch === '.') {
+            string += '.';
+            // 跳过., 获取小数后的部分
+            while (next() && ch >= '0' && ch <= '9') {
+                string += ch;
+            }
+        }
+        text = ch + text;
+        number = +string;
+        array.push(number);
+
+    }
+
+    function calculate(left, right, op) {
+        switch (op) {
+            case '+':
+                return left + right;
+                break;
+            case '-':
+                return left - right;
+                break;
+            case '*':
+                return left * right;
+                break;
+            case '/':
+                return left / right;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+
+    while (next()) {
+        console.log(stack);
+        value();
+    }
+
+    while (stack.length) {
+        var express = stack.pop();
+        array.push(express);
+    }
+
+    console.log('exp: ' + array.join(''), array);
+
+    var result = [];
+    for (var i = 0; i < array.length; i++) {
+        if (typeof array[i] === 'string') {
+            var right = result.pop();
+            var left = result.pop();
+            var express = calculate(left, right, array[i]);
+            result.push(express);
+        } else {
+            result.push(array[i]);
+        }
+    }
+    console.log(express);
+
+</script>

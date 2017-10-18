@@ -1,0 +1,138 @@
+<script>
+    var text = '2+3* 4*(5-4)';
+
+    console.log(text);
+
+    var at = 0,
+        ch = '';
+    var stack = [];
+    var express = [];
+    var result = [];
+
+    function bracket() {
+        var op = stack.pop();
+        if (op && op !== '(') {
+            bracket();
+            express.push(op);
+        }
+    }
+
+    function isAdvance(ch) {
+        var length = stack.length;
+        switch (ch) {
+            case '+': case '-':
+                return true;
+                break;
+            case '*': case '/':
+                return (stack[length - 1] === '/' || stack[length - 1] === '*') ? true : false;
+                break;
+        }
+    }
+
+    function operator() {
+        var length = stack.length;
+        if (length !== 0 && stack[length - 1] !== '(' && isAdvance(ch)) {
+            var op = stack.pop();
+            express.push(op);
+            operator();
+        } else {
+            stack.push(ch)
+        }
+    }
+
+    function next() {
+        ch = text.charAt(at);
+        at += 1;
+        while (ch && ch <= ' ') {
+            // 跳过空格
+            next();
+        }
+        return ch;
+    }
+
+    function number() {
+        var number, string = '';
+        if (ch === '-') {
+            string = '-';
+            // 跳过-
+            next('-');
+        }
+        while (ch >= '0' && ch <= '9') {
+            string += ch;
+            next();
+        }
+        if (ch === '.') {
+            string += '.';
+            // 跳过., 获取小数后的部分
+            while (next() && ch >= '0' && ch <= '9') {
+                string += ch;
+            }
+        }
+        text = ch + text;
+        number = +string;
+        express.push(number);
+
+    }
+
+    function calculate(left, right, op) {
+        switch (op) {
+            case '+':
+                return left + right;
+                break;
+            case '-':
+                return left - right;
+                break;
+            case '*':
+                return left * right;
+                break;
+            case '/':
+                return left / right;
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+
+    while (next()) {
+        switch (ch) {
+            case '(':
+                stack.push(ch)
+                break;
+            case ')':
+                bracket();
+                break;
+            default:
+                if (ch >= '0' && ch <= '9') {
+                    number()
+                } else {
+                    operator();
+                }
+        }
+    }
+
+    // 把所有操作出栈
+    while (stack.length) {
+        var op = stack.pop();
+        express.push(op);
+    }
+
+    console.log('exp: ' + express.join(''));
+
+    // 计算结果
+    function compute () {
+        for (var i = 0; i < express.length; i++) {
+            if (typeof express[i] === 'string') {
+                var right = result.pop();
+                var left = result.pop();
+                var op = calculate(left, right, express[i]);
+                result.push(op);
+            } else {
+                result.push(express[i]);
+            }
+        }
+    }
+    compute();
+    console.log(result[0]);
+
+</script>

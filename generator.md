@@ -1,3 +1,4 @@
+
 ## 异步编程难点
 
 #### 异常处理
@@ -78,14 +79,14 @@
 
 #### 事件发布/订阅模式
 
-    // 订阅 
+    // 订阅
     emiiiter.on('event'， function(message) {
         console.log(message);
     })
     // 发布
     emitter.emit('event', 'i am a message');
 
-事件监听是一种高阶函数的应用，通过事件可以把内部数据传递给外部的调用者，编程者可以不用关心组件内部如何执行，只需关注在需要的事件点上即可。注意： 
+事件监听是一种高阶函数的应用，通过事件可以把内部数据传递给外部的调用者，编程者可以不用关心组件内部如何执行，只需关注在需要的事件点上即可。注意：
 
 * 如果事件的监听器过多可能出现过度占用cup的结果。
 * 如果运行期间触发了error事件，解释器会检查是否对error监听了事件，如果有就交给监听器处理，如果没有则将错误抛出。所以应该对error事件做监听。
@@ -164,7 +165,7 @@ connect核心代码：
         return app;
     }
 
-app.use: 
+app.use:
 
     app.use = function(router, fn) {
         this.stack.push(fn);
@@ -184,7 +185,7 @@ next:
     }
 
 ##### async
-    
+
 异步的串行执行
 
     async.series([function (callback) {
@@ -373,7 +374,7 @@ regenerator是用来生成generetor函数并返回一个迭代器供外界调用
         __proto__: GeneratorFunctionPrototype {
             constructor: function GeneratorFunctionPrototype() {},
             next: function (arg) { … },
-            throw: function (arg) { … } 
+            throw: function (arg) { … }
             …
         }
     }
@@ -410,7 +411,7 @@ tryCatch方法会实际调用 `example$` 方法，进入转换后的switch case,
             state = context.done
                 ? GenStateCompleted
                 : GenStateSuspendedYield;
-    
+
             var info = {
                 value: record.arg,
                 done: context.done
@@ -672,12 +673,13 @@ co2Thunk的代码等价于：
 
 等同于
 
-    function fn(args){ 
+    function fn(args){
         return co2Thunk(function*() {
             // ...
-        }); 
+        });
     }
 
 
 #### generator语法树
-    
+
+金融生态工程团队 > 异步编程解决方案 - generator > ExpressionStatement.png金融生态工程团队 > 异步编程解决方案 - generator > SwitchStatement.png

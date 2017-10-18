@@ -1,0 +1,90 @@
+<canvas id="myCanvas" width="400" height="400"></canvas>
+<script type="text/javascript">
+    var Vector = function(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    Vector.prototype = {
+        getVector: function(dt, vector) {
+            return new Vector(this.x + dt * vector.x, this.y + dt * vector.y);
+        }
+    }
+
+    function display(ctx, position) {
+        ctx.strokeStyle = "#000000";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.clearRect(0,0,400,400);
+        ctx.beginPath();
+        ctx.arc(position.x, position.y, 4, 0, Math.PI * 2, true);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    function collide(position, velocity) {
+        if (position.x > 400 || position.x < 0) {
+            velocity.x = - velocity.x;
+        }
+        if (position.y > 400 || position.y < 0) {
+            velocity.y = - velocity.y;
+        }
+    }
+
+    var canvas = document.getElementById('myCanvas');
+    function start(mousePosition, velocity) {
+        var ctx = canvas.getContext('2d');
+        var position = mousePosition;
+        var velocity = velocity;
+        var acceleration = new Vector(0, 20);
+        var dt = 0.05;
+
+        function loop(render) {
+            collide(position, velocity)
+            position = position.getVector(dt, velocity);
+            velocity = velocity.getVector(dt, acceleration);
+            render(position);
+            var handle = requestAnimationFrame(function() {
+                loop(render);
+            });
+
+        }
+        requestAnimationFrame(function() {
+            loop(function(position) {
+                display(ctx, position);
+            })
+        });
+    }
+
+    canvas.onmousemove = function(e) {
+        var velocity = new Vector(e.movementX, e.movementY);
+        var mousePosition = new Vector(e.offsetX, e.offsetY);
+        start(mousePosition, velocity);
+    };
+
+
+
+    // window.onresize = function() {
+    //     resizeCanvas();
+    // }
+    //
+    // function resizeCanvas() {
+    //     var h = screen.height;
+    //     var w = screen.width;
+    //     var c = document.getElementById('myCanvas');
+    //     c.setAttribute('width', w);
+    //     c.setAttribute('height', h);
+    // }
+    //
+    // resizeCanvas();
+
+    function draw() {
+        var canvas = document.getElementById('myCanvas');
+        var ctx = canvas.getContext('2d');
+        // 贝尔赛曲线
+        ctx.beginPath();
+        ctx.moveTo(0, 300);
+        ctx.quadraticCurveTo(130, 170, 510, 300);
+        ctx.stroke();
+    }
+    draw();
+</script>

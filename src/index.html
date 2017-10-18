@@ -1,0 +1,37 @@
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8020/api/a/b/c",
+        success: function (msg) {
+            console.log(1, msg);
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8020/api/a/b/c",
+                success: function (msg) {
+                    console.log(2, msg);
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8020/api/a/b/c",
+                        success: function (msg) {
+                            console.log(3, msg);
+                        }
+                    });
+                }
+            });
+        }
+    });
+
+    function * quips(name) {
+        yield "你好 " + name + "!";
+        yield "希望你能喜欢这篇介绍ES6的译文";
+        if (name.startsWith("X")) {
+            yield "你的名字 " + name + "  首字母是X，这很酷！";
+        }
+        yield "我们下次再见！";
+    }
+    var g = quips('小猫');
+    console.log(g.next().value);
+    console.log(g.next().value);
+    console.log(g.next().value);
+</script>
