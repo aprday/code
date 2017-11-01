@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Web Audio Demo</title>
+		
+		
+		
+		<style>
+			#demo{
+				width: 600px;
+				height: 800px;
+				margin: 0px auto;
+			}
+			#waves{
+				width: 100%;
+				height:300px;
+				margin: 0px auto;
+			}
+			#source{
+				width: 100%;
+				margin: 10px auto;
+			}
+			#fft{
+				width: 100%;
+				margin: 10px auto;
+			}
+			
+			
+			
+		</style>
+	</head>
+	
+	<body>
+		<div id = "demo">
+			<canvas id = "waves"></canvas>
+			<br/>
+			
+			<audio src = "30447810.mp3" id ="source" controls="controls"></audio>
+			
+			<div id="setting">
+				
+				<select id= "fft" onChange="select(this.value)">
+					<option value  = "256">S</option>
+					<option value = "512">M</option>
+					<option value = "1024">L</option>
+				</select>
+			</div>
+		</div>
+		<script src="./demo.js"></script>
+		
+		
+	</body>
+	
+</html>

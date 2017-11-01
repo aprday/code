@@ -1,0 +1,107 @@
+@import "../../base/common.less";
+//global
+@globalTextColor: #888;
+
+@weuiDialogBackgroundColor: #FAFAFC;
+@weuiDialogLineColor: #D5D5D6;
+@weuiDialogLinkColor: #3CC51F;
+@weuiDialogLinkActiveBc: #EEEEEE;
+
+.widget-dialog {
+    position: fixed;
+    z-index: 13;
+    width: 85%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: @weuiDialogBackgroundColor;
+    text-align: center;
+    border-radius: 3px;
+    .widget-dialog-confirm & {
+        .widget-dialog-hd {
+            padding: 1.2em 20px .5em;
+        }
+        .widget-dialog-bd {
+            text-align: left;
+        }
+    }
+}
+
+.widget-dialog-hd {
+    padding: 1.2em 0 .5em;
+}
+
+.widget-dialog-title {
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.widget-dialog-bd {
+    padding: 0 20px;
+    font-size: 15px;
+    color: @globalTextColor;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.widget-dialog-ft {
+    position: relative;
+    line-height: 42px;
+    margin-top: 20px;
+    font-size: 17px;
+    display: flex;
+    a {
+        display: block;
+        flex: 1;
+        color: @weuiDialogLinkColor;
+        text-decoration: none;
+        .setTapColor;
+        &:active {
+            background-color: @weuiDialogLinkActiveBc;
+        }
+    }
+    &:after {
+        content: " ";
+        .setTopLine(@weuiDialogLineColor);
+    }
+    .widget-dialog-confirm & {
+        a {
+            position: relative;
+            &:after {
+                content: " ";
+                .setLeftLine(@weuiDialogLineColor);
+            }
+            &:first-child {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.widget-btn-dialog {
+    &.default {
+        color: #e84f50;
+    }
+    &.primary {
+        color: #e84f50;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .widget-dialog {
+        width: 35%;
+    }
+}
+
+.widget-mask {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .6);
+}

@@ -1,0 +1,17 @@
+<div class="weui_cell">
+  <div class="weui_cell_hd">
+    <label class="weui_label" :style="{width: labelWidth + 'em'}" v-if="title">{{title}}</label>
+    <inline-desc v-if="inlineDesc">{{inlineDesc}}</inline-desc>
+  </div>
+  <div class="weui_cell_bd weui_cell_primary">
+    <input class="weui_input" :type="type" :pattern="pattern" placeholder="{{placeholder}}" v-model="value" @blur="blur" v-el:input/>
+  </div>
+  <div class="weui_cell_ft">
+    <icon type="clear" v-show="showClear && value" @click="clear"></icon>
+    <icon type="warn" title="{{!valid ? firstError : ''}}" v-show="!equalWith && ((touched && !valid && firstError) || (forceShowError && !valid && firstError))"></icon>
+    <icon type="warn" v-show="hasLengthEqual && dirty && equalWith && !valid"></icon>
+    <icon type="success" v-show="equalWith && equalWith===value && valid"></icon>
+  </div>
+</div>
+
+<!-- @require ../styles/style.less -->

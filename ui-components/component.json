@@ -1,0 +1,27 @@
+{
+  "protocol": "gitlab",
+  "gitlab": {
+    "author": "tuanb-fe-webapp"
+  },
+  "dependencies": [
+    "gitlab:tuanb-fe/mod",
+    "gitlab:tuanb-fe/jquery@new",
+    "gitlab:tuanb-fe-webapp/BNJS",
+    "gitlab:tuanb-fe-webapp/layoutX",
+    "gitlab:tuanb-fe-webapp/flexibleX",
+    "gitlab:tuanb-fe/switchX@mobile",
+    "gitlab:tuanb-fe-webapp/mixinX",
+    "gitlab:tuanb-fe-webapp/redPointX",
+    "gitlab:tuanb-fe-webapp/slideTabX@master",
+    "gitlab:tuanb-fe-webapp/selectX",
+    "gitlab:tuanb-fe-webapp/listX",
+    "gitlab:tuanb-fe-webapp/toolbarX",
+    "gitlab:tuanb-fe-webapp/buttonX",
+    "gitlab:tuanb-fe-webapp/inputListX",
+    "gitlab:tuanb-fe-webapp/iconX",
+    "gitlab:tuanb-fe-webapp/fontX",
+    "gitlab:tuanb-fe-webapp/toastrX",
+    "gitlab:tuanb-fe-webapp/dialogX"
+  ],
+  "name": "demo"
+}

@@ -1,0 +1,30 @@
+@import "../../base/common";
+@import "../../icon/icon-font";
+
+.widget-radio(@checkSize){
+  & {
+        position: relative;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        .widget-container{
+            padding-right: 0.35em;
+        }
+        //method radio
+        .widget-check {
+            // radio
+            &:checked {
+                & + .widget-icon-checked {
+                    &:before {
+                        display: block;
+                        content: '\e917';
+                        color: #e84f50;
+                        font-size: @checkSize;
+                    }
+                }
+            }
+        }
+  }
+}

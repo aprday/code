@@ -1,0 +1,25 @@
+    <!DOCTYPE html>
+    <html>
+    	<head>
+    		<title>Hello, World</title>
+    		<meta charset="utf-8">
+        <link rel="stylesheet" href="../styles/style.css">
+    	</head>
+    	<body>
+
+        <div class="bd spacing">
+            <a href="javascript:;" class="weui_btn weui_btn_primary" id="showToast">点击弹出Toast</a>
+        </div>
+        <!--BEGIN toast-->
+        <div id="toast" style="display: none;">
+            <div class="weui_mask_transparent"></div>
+            <div class="weui_toast">
+                <p class="weui_toast_content content">已完成</p>
+            </div>
+        </div>
+    		<script type="text/javascript" src="/static/mod.js"></script>
+    		<script type="text/javascript">
+        		var $ = require('../scripts/main.js');
+    		</script>
+    	</body>
+    </html>

@@ -1,0 +1,42 @@
+@import "../../base/common";
+@import "../../icon/icon-font";
+
+
+@checkSize: 24px;
+
+.widget-checkbox(@checkSize){
+      & {
+          position: relative;
+          display: flex;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+          .widget-container{
+              padding-right: 0.35em;
+          }
+          .widget-icon-checked {
+              &:before {
+                  content: '\e905';
+                  color: #C9C9C9;
+                  font-size: @checkSize;
+                  display: block;
+                  pointer-events: none;
+              }
+          }
+          // method2 accessbility
+          .widget-check {
+                // checkbox
+                &:checked {
+                    & + .widget-icon-checked {
+                        &:before {
+                                content: '\e904';
+                                color: #e84f50;
+                        }
+                    }
+                }
+          }
+
+      }
+
+}

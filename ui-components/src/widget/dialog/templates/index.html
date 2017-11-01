@@ -1,0 +1,48 @@
+
+
+
+    <!DOCTYPE html>
+    <html>
+    	<head>
+    		<title>Hello, World</title>
+    		<meta charset="utf-8">
+        <link rel="stylesheet" href="../styles/style.css">
+    	</head>
+    	<body>
+        <div class="bd spacing">
+            <a href="javascript:;" class="weui_btn weui_btn_primary" id="showDialog1">点击弹出Dialog样式一</a>
+            <a href="javascript:;" class="weui_btn weui_btn_primary" id="showDialog2">点击弹出Dialog样式二</a>
+        </div>
+        <!--BEGIN dialog1-->
+        <div class="widget-dialog-confirm" id="dialog1" style="display: none;">
+            <div class="widget-mask"></div>
+            <div class="widget-dialog">
+                <div class="widget-dialog-hd"><strong class="widget-dialog-title">弹窗标题</strong></div>
+                <div class="widget-dialog-bd">自定义弹窗内容，居左对齐显示，告知需要确认的信息等</div>
+                <div class="widget-dialog-ft">
+                    <a href="javascript:;" class="widget-btn-dialog default cancel">取消</a>
+                    <a href="javascript:;" class="widget-btn-dialog primary confirm">确定</a>
+                </div>
+            </div>
+        </div>
+        <!--END dialog1-->
+        <!--BEGIN dialog2-->
+        <div class="widget-dialog-alert" id="dialog2" style="display: none;">
+            <div class="widget-mask"></div>
+            <div class="widget-dialog">
+                <div class="widget-dialog-hd"><strong class="widget-dialog-title">弹窗标题</strong></div>
+                <div class="widget-dialog-bd">弹窗内容，告知当前页面信息等</div>
+                <div class="widget-dialog-ft">
+                    <a href="javascript:;" class="widget-btn-dialog primary confirm">确定</a>
+                </div>
+            </div>
+        </div>
+        <!--END dialog2-->
+
+
+    		<script type="text/javascript" src="/static/mod.js"></script>
+    		<script type="text/javascript">
+        		var $ = require('../scripts/main.js');
+    		</script>
+    	</body>
+    </html>
