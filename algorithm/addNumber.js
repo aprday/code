@@ -1,4 +1,4 @@
-function add(num) {
+function func(num) {
     var sum = num;
     function fn(num) {
         sum += num;
@@ -10,4 +10,4 @@ function add(num) {
     return fn;
 }
 
-add(1)(2)(3)(4)(5);
+func(1)(2)(3)(4)(5);

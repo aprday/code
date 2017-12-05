@@ -1,0 +1,153 @@
+.container{
+    width: 480px;
+    margin: 50px auto;
+}
+.title{
+    text-align: center;
+}
+.container .header{
+    position: relative;
+    height: 50px;
+    margin: 30px 0px;
+}
+.container .header .input{
+    padding: .5em 1em;
+    border: 1px solid #ccc;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+
+}
+.container .header .add{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: #444;
+    background-color: #e6e6e6;
+    border-color: #e6e6e6;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: .5em 1em;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: background-color .3s ease-out,border-color .3s ease-out;
+    transition: background-color .3s ease-out,border-color .3s ease-out;
+}
+.container .session{
+}
+.container .session .board{
+    border-top: 1px solid #f1f1f1;
+    counter-reset: ol-counter;
+    list-style-type: none;
+    margin: 0 0 1.5em;
+    padding: 0;
+}
+.container .session .board .player{
+    border-bottom: 1px solid #f1f1f1;
+    cursor: pointer;
+    padding: .5em 0;
+    position: relative;
+    overflow: hidden;
+    transition: background 300ms ease-out;
+    border-left: 4px solid white;
+}
+.container .session .board .player:before{
+    color: #999;
+    content: counter(ol-counter);
+    counter-increment: ol-counter;
+    display: inline-block;
+    font-weight: 300;
+    line-height: 3em;
+    text-align: center;
+    vertical-align: middle;
+    width: 3em;
+}
+.player .name {
+    display: inline-block;
+    font-size: 1.25em;
+    font-weight: 300;
+    vertical-align: middle;
+}
+.player .score {
+        color: #333;
+    display: block;
+    float: right;
+    font-size: 1.25em;
+    font-weight: 600;
+    line-height: 2.4em;
+    padding-right: 1.25em;
+}
+
+.details {
+    overflow: hidden;
+}
+.details .name {
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 2.25rem;
+    padding-left: 1.25rem;
+    vertical-align: middle;
+}
+.details .up {
+    border-radius: 3em;
+    border: #eb5f3a 1px solid;
+    background: transparent;
+    color: #eb5f3a;
+    cursor: pointer;
+    float: right;
+    font-family: 'Source Sans Pro' ,'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 10px 10px;
+    transition: all 200ms ease-in;
+}
+.details .down {
+    border-radius: 3em;
+    border: #178de5 1px solid;
+    background: transparent;
+    color: #278de5;
+    cursor: pointer;
+    float: right;
+    font-family: 'Source Sans Pro' ,'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 10px 10px;
+    transition: all 200ms ease-in;
+}
+.details .delete {
+    border-radius: 3em;
+    border: #ec2746 1px solid;
+    background: transparent;
+    color: #ec2746;
+    cursor: pointer;
+    float: right;
+    font-family: 'Source Sans Pro' ,'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    outline: none;
+    padding: 10px 20px;
+    transition: all 200ms ease-in;
+}
+.message {
+    color: #aaa;
+    line-height: 2.25rem;
+    text-align: center;
+}
